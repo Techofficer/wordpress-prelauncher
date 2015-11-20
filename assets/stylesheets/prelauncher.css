@@ -1,0 +1,693 @@
+/*@import url(http://fonts.googleapis.com/css?family=Lora:400,700|Lato:400,700|Oswald:400,300,700|Arimo:400,700|Slabo+27px|Titillium+Web:400,700);*/
+
+
+
+
+.alert{
+  margin-bottom: 0px;
+  text-align: center;
+  z-index: 1000;
+  position: relative;
+}
+
+.alert.alert-success{
+  color: white;
+  background: #3ed37d;
+  border: none;
+  border-radius: 0;
+}
+
+.alert.alert-danger{
+  color: white;
+  background: #e74c3c;
+  border: none;
+  border-radius: 0;  
+}
+
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+html {
+  position: relative;
+  height:100%;
+  margin-top: 0 !important;
+  overflow-y: auto !important;
+}
+
+body {
+  height:100%;
+  min-height: 100%;
+  font-size: 14px;
+  margin: 0;
+  font: 14px "open sans", Helvetica, Arial, sans-serif;
+  color: #333;
+  background-color: #FFF;
+}
+
+a:link, a:visited, a:active, a:focus{
+  outline: none !important;
+  text-decoration: none !important;
+  -webkit-transition: all 250ms ease-in-out;
+  -moz-transition: all 250ms ease-in-out;
+  -o-transition: all 250ms ease-in-out;
+  -ms-transition: all 250ms ease-in-out;
+  transition: all 250ms ease-in-out;
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#additional_info .form-group label {
+  color: #271B1B;
+  font-weight: 300;
+  font-style: normal;
+}
+
+
+#additional_info .form-control {
+  min-height: 40px;
+  background-color: #F3F3F3;
+  border-radius: 0px;
+  color: #3E3E3E;
+  box-shadow: none;
+  padding: 6px;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+#campaign ul {
+    list-style: outside none none;
+}
+
+#campaign #header .navbar {
+    height: 95px;
+    z-index: 100;
+    border-radius: 0px;
+    border: 0px none;
+    margin-bottom: 0;
+}
+
+#social-sharing {
+    text-align: center;
+}
+
+#campaign header .navbar-brand {
+    float: none;
+    display: block;
+    padding: 0px;
+}
+
+#campaign form .form-control{
+    min-height: 0;
+}
+
+#campaign > header{
+    z-index: 10;
+    min-height: 0;
+    margin-bottom: 0;
+  border: none;
+  border-radius: 0;
+}
+
+#campaign #header .navbar-brand > img {
+    margin: 0px auto;
+}
+
+#campaign #main, #campaign #refer {
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+#campaign #main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+}
+
+#campaign #content{
+    width: 100%;
+}
+
+#campaign .cover {
+
+  width: 100%;
+}
+
+
+#campaign #new_client {
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+
+
+#campaign #client_email {
+    margin-right: -4px;
+    float: left
+}
+
+#campaign #new_client .form-group {
+    float: left;
+}
+
+#campaign footer{
+    width: 100%;
+    bottom: 0;
+    clear: both;
+}
+
+#prizes {
+    border-top: 5px solid #E9E9E9;
+    position: relative;
+    font-family: "open sans";
+    color: #333;
+}
+
+#prizes .prize {
+	position: relative;
+	float: left;
+    width: 100%;
+    margin-top: 15px;
+}
+
+#prizes .prize-number{
+    background-color: #E9E9E9;
+    color: inherit;
+    border-radius: 50%;
+    position: absolute;
+    top: -60px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    left: calc(50% - 15px);
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#prizes .prize-point{
+	content: "";
+	height: 35px;
+	width: 2px;
+	background: #E9E9E9 none repeat scroll 0% 0%;
+	position: absolute;
+	top: -35px;
+	left: calc(50% - 1px);
+}
+
+#prizes .prize-name{
+	text-align: center;
+    font-size: 16px;
+    color: inherit;
+}
+
+.progressbar{
+    height: 5px;
+    top: -5px;
+    position: absolute;
+    left: 0;
+    width: 0;
+    z-index: 100;
+    background: #2ecc71;
+}
+
+#prizes .active-prize .prize-name{
+    color: #2ecc71;
+}
+
+#prizes .active-prize .prize-number{
+    background: #2ecc71;
+    color: white;
+}
+
+
+#prizes img{
+    border: 3px solid #E9E9E9;
+    top: -330px;
+    position: absolute;
+    display: none;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#prizes .prize:hover img{
+    display: block;
+}
+
+.btn-default:hover{
+  background-color: none;
+}
+
+
+#campaign .contact-socials{
+    display:inline-block;
+}
+
+#campaign .contact-socials li{
+    padding:0px 10px;
+    float:left;
+    transition:all 250ms ease-in-out 0s;
+    height: auto;
+    text-align:center;
+    border-right:1px solid #CCC;
+}
+
+#campaign .contact-socials li:last-child{
+    border:none;
+}
+
+#campaign .contact-socials i.fa{
+    font-size:3vw;
+}
+
+#campaign .ico-facebook{
+    color:#3B5998;
+}
+
+#campaign .ico-pinterest{
+    color: #bd081c;
+}
+
+#campaign .ico-pinterest:hover, #campaign .ico-pinterest:focus{
+    color: #bd081c;
+  opacity: 0.8;
+}
+
+#campaign .ico-facebook:hover,#campaign .ico-facebook:focus{
+    color:#3B5998;
+    opacity:0.8;
+}
+
+#campaign .ico-twitter{
+    color:#00A9ED;
+}
+
+#campaign .ico-twitter:hover,#campaign .ico-twitter:focus{
+    color:#00A9ED;
+    opacity:0.8;
+}
+
+#campaign .ico-mail{
+    color:#25A3DC;
+}
+
+#campaign .ico-mail:hover,#campaign .ico-mail:focus{
+    color:#25A3DC;
+    opacity:0.8;
+}
+
+
+#campaign .ico-gplus{
+    color: #d34836;
+}
+
+#campaign .ico-gplus:hover,#campaign .ico-gplus:focus{
+    color:  #d34836;
+    opacity:0.8
+}
+
+
+
+#refer aside {
+    margin: 20px auto 0px;
+}
+
+#refer aside h4 {
+    font-size: 18px;
+    color: #000;
+    padding: 10px 0px 0px;
+    margin-top: 0px;
+}
+
+.section-title h1 {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 40px;
+    color: #000;
+    margin: 0px;
+    text-align: center;
+    font-family:"open sans",sans-serif;
+    margin-top: 50px;
+}
+
+.referral{
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.referral img{
+  float: left;
+  margin-right: 20px;
+}
+
+.referral p{
+  line-height: 50px;
+}
+
+#campaign.modal-open #content-wrap{
+  -webkit-filter:blur(6px);
+  -moz-filter:blur(6px);
+  -o-filter:blur(6px);
+  -ms-filter:blur(6px);
+  filter:blur(6px);
+  filter:url("data:image/svg+xml;utf9,<svg%20version='1.1'%20xmlns='http://www.w3.org/2000/svg'><filter%20id='blur'><feGaussianBlur%20stdDeviation='5'%20/></filter></svg>#blur");
+  filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='6')
+}
+
+#additional_info {
+  max-width: 450px;
+}
+
+#additional_info h4{
+  font-family: "sans-serif";
+  font-weight: 200;
+  font-size: 16px;
+}
+
+#additional_info .modal-content {
+    border-radius: 0px;
+}
+
+#additional_info .btn:hover, #additional_info .btn:focus {
+    background: #83D9F2 none repeat scroll 0% 0%;
+    border: medium none;
+    color: #FFF;
+}
+
+#additional_info .btn{
+  border-radius: 0;
+  border: medium none;
+  float: right;
+  color: white;
+  background: #4EC9ED;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+
+
+
+@media screen and (max-width: 980px){
+
+
+  #refer article p.small {
+    display: none;
+  }
+
+  #refer figcaption {
+    display: block;
+  }
+
+
+    #refer input {
+      height: 30px;
+      font-size: 19px;
+      margin-top: 10px;
+      line-height: 30px;
+    }
+
+    #refer figcaption{
+      margin-top: 10px;
+    }
+
+
+    #refer h2 {
+      padding-top: 20px;
+      font-size: 22px;
+      padding-bottom: 15px;
+    }
+
+
+}
+
+@media screen and (max-width: 850px){
+  
+
+
+
+  #refer input {
+    height: 30px;
+    font-size: 18px;
+    margin-top: 10px;
+    line-height: 30px;
+  }
+
+
+
+
+  #campaign .contact-socials i.fa {
+    font-size: 35px;
+  }
+
+  #refer figure{
+    margin-top: 18px;
+  }
+
+  #refer h2 {
+    line-height: 30px;
+  }
+
+
+  #prizes .prize-number{
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    left: calc(50% - 12px);
+  }
+}
+
+
+@media screen and (max-width: 800px){
+
+
+    #refer h1{
+      margin: 0;
+    }
+
+  .refer-left {
+    padding: 0;
+  }
+
+  #refer input {
+    height: 30px;
+    font-size: 18px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  line-height: 30px;
+  }
+
+
+  #refer figure{
+    margin-top: 18px;
+  }
+
+  #refer h2 {
+    line-height: 30px;
+  }
+
+
+  #prizes .prize-number{
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    left: calc(50% - 13px);
+  }
+
+
+}
+
+@media screen and (max-width: 768px){
+
+  #refer input {
+    height: 28px;
+    font-size: 17px;
+    margin-top: 5px;
+    line-height: 28px;
+  }
+
+
+  #refer p{
+    line-height: 1.15;
+  }
+
+}
+
+@media screen and (max-width: 767px){
+
+  #refer header>p{
+    font-size: 20px;
+  }
+
+  #reinforcement p{
+    text-align: center;
+  }
+
+  #refer figcaption{
+    display: none;
+  }
+
+  #refer figcaption.mobile{
+    display: block;
+  }
+
+  #refer figcaption p {
+    font-size: 17px;
+  }
+  #refer p {
+    font-size: 17px;
+  }
+
+  #refer h1 {
+    font-size: 30px;
+  }
+
+
+}
+
+@media screen and (max-width: 600px){
+  .cover {
+    padding: 0 5px;
+  }
+
+  #campaign .cover-heading {
+    font-size: 5vw;
+  }
+
+  #campaign #new_client {
+  }
+
+  #campaign #new_client input {
+    font-size: 20px;
+  }
+
+  #campaign #new_client .client_email {
+    margin-right: -4px;
+    
+  }
+
+  #campaign #new_client .submit {
+    min-width: 80px;
+  }
+
+}
+
+@media screen and (max-width: 500px){
+
+  #refer header>p{
+    font-size: 15px;
+  }
+
+  #campaign #new_client .client_email {
+    width: 60%;
+  }
+
+  #campaign #new_client .submit {
+    width: 40%;
+  }
+
+
+}
+
+
+
+@media screen and (max-width: 450px){
+   #campaign #new_client input {
+      font-size: 18px !important;
+  }
+
+  #campaign .cover-heading {
+    font-size: 30px;
+  }
+
+  #campaign #new_client {
+    width: 100%;
+  } 
+
+  #campaign #new_client .client_email {
+    width: 55%;
+  }
+
+  #campaign #new_client .submit {
+    width: 45%;
+  }
+
+  #campaign .contact-socials i.fa {
+   font-size:30px;
+  }
+
+  #campaign .contact-socials li {
+    padding: 0px 5px;
+  }
+  
+}
+
+
+@media screen and (max-width: 360px){
+
+  #refer header>p{
+    font-size: 13px;
+  }
+
+  #campaign .cover-heading {
+    font-size: 25px;
+  }
+  
+  #campaign #new_client .submit {
+      min-width: 60px;
+  }
+
+  #refer figcaption p {
+    font-size: 14px;
+  }
+
+}
+
+
+
+@media screen and (max-width: 320px){
+  #campaign #new_client input {
+      font-size: 16px !important;
+  }
+
+  #campaign #new_client .client_email {
+   width: 55%;
+  }
+
+  #campaign #new_client .submit {
+    width: 45%;
+  }
+
+
+}
+
+@media screen and (max-width: 300px){
+  #campaign #new_client .form-group{
+    width: 100%;
+  }
+
+  #campaign #new_client .submit{
+    margin-top: -15px;
+  }
+
+  #campaign #new_client input {
+      width: 100% !important;
+      font-size: 18px !important;
+  }
+}
