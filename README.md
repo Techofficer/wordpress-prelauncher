@@ -33,6 +33,7 @@ The manual installation method involves downloading the plugin and uploading it 
 ## Usage
 
 1. Add credentials on "prelaucher" tab of your WordPress admin panel. Company ID and private key can be found in your dashboard on [http://prelauncher.info](http://prelauncher.info).
+
 2.
 	Add 
 	```php
