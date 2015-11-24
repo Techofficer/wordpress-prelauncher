@@ -5,17 +5,14 @@ var Prelauncher = function(company_id, token, development){
 	} else {
 		var rootUrl = "http://api.prelauncher.info/companies/" + company_id + "/clients/";
 	}
+
+
 	
-	var websiteURL;
-
+	
 	this.buildFirstPage = function(){
-
-		buildPage(rootUrl + "new", function(data){
-			generatePage(data["constructor"], function(){
-				addHiddenTags();
-				onSubmitFormHandler();
-			});
-		});
+		jQuery('html').attr('style', function(i,s) { return (s || '') + 'margin-top: 0 !important;' });
+		addHiddenTags();
+		onSubmitFormHandler();
 	}
 
 	function onSubmitFormHandler(){
@@ -39,14 +36,7 @@ var Prelauncher = function(company_id, token, development){
 		});		
 	}
 
-	function generatePage(constructor, callback){
 
-		jQuery("body").html(constructor).promise().done(function(){
-			
-			jQuery('html').attr('style', function(i,s) { return (s || '') + 'margin-top: 0 !important;' })
-			callback();
-		});
-	}
 
 	function GetURLParameter(sParam) {
     	var sPageURL = window.location.search.substring(1);
@@ -87,14 +77,14 @@ var Prelauncher = function(company_id, token, development){
 
 	function createClientCallback(data, wordpress){
 		if (wordpress !== undefined){
-			var url = websiteUrl + "/?u=" + data["client"]["referral_code"];
+			var url = data["clients"]["website_url"] + "/?uid=" + data["clients"]["referral_code"];
 		} else {
-			var url = websiteUrl + "/clients/" + data["client"]["referral_code"];
+			var url = data["clients"]["website_url"] + "/clients/" + data["clients"]["referral_code"];
 		}
 		window.location.replace(url);
 	}
 
-	function buildPage(url, callback){
+	function apiCall(url, callback){
 		jQuery.ajax({
 			url: url, 
 			cache: false, 
@@ -103,9 +93,7 @@ var Prelauncher = function(company_id, token, development){
 			'beforeSend' : function(xhr){
 				xhr.setRequestHeader("Accept", "application/json")
 			}, 
-			data: {token: token}, 
 			success: function(data) {
-				websiteUrl = data["website_url"];
 				callback(data);
 			}, error: function(data) {
 				console.log(data);
@@ -114,29 +102,39 @@ var Prelauncher = function(company_id, token, development){
 	}
 
 
-	function referralLink(referralCode){
+	function referralLink(websiteUrl,referralCode){
 		return websiteUrl + "/?ref=" + referralCode;
 	}
 
+	function clientURL(referralCode){
+		return rootUrl + referralCode;
+	}
+
+	function shareURL(referralCode, service){
+		return rootUrl + referralCode + "/shares?share%5Bsocial_network%5D=" + service
+	}
+
 	this.buildSecondPage = function(referralCode){
-		buildPage(rootUrl + referralCode, function(data){
-			generatePage(data["constructor"], function(){
-				if (data["prize_id"]){
-					jQuery(".prize[data-prize_id=" + data["prize_id"] + "]").addClass("active-prize")
-				}
-				
-				jQuery("strong > a").text(data["number_of_referrals"] + " friends ").attr("href", websiteUrl + "/clients/" + referralCode + "/referrals");
-				jQuery("[name=referral_link]").val(referralLink(referralCode));
-				modifySocialLinks(referralCode);
-				jQuery(".progressbar").css("width", data['progress'] * 100 + "%");				
-			});
+		console.log(clientURL(referralCode));
+		apiCall(clientURL(referralCode), function(data){
+			var client = data["clients"];
+			console.log(client);
+
+			if (data["prize_id"]){
+				jQuery(".prize[data-prize_id=" + client["prize_id"] + "]").addClass("active-prize")
+			}
+			
+			jQuery("strong > a").text(client["number_of_referrals"] + " friends ").attr("href", client["website_url"] + "/clients/" + referralCode + "/referrals");
+			jQuery("[name=referral_link]").val(referralLink(client["website_url"], referralCode));
+			modifySocialLinks(referralCode);
+			jQuery(".progressbar").css("width", client['progress'] * 100 + "%");				
 		});
 	}
 
 	function modifySocialLinks(referralCode){
 		jQuery(".foo_social").not(".ico-mail").each(function() {
 			var service = jQuery(this).data("service");
-			jQuery(this).attr("href", rootUrl + referralCode + "/shares?share%5Bsocial_network%5D=" + service);
+			jQuery(this).attr("href", shareURL(referralCode, service));
 		});		
 		jQuery(".ico-mail").attr("href", jQuery(".ico-mail").attr("href") + " " + referralLink(referralCode));
 	}

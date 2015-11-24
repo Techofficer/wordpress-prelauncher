@@ -32,7 +32,13 @@ The manual installation method involves downloading the plugin and uploading it 
 
 ## Usage
 
-Simpy install [prelauncher company_id=COMPANY_ID token=PUBLIC_KEY][/prelauncher] shortcode into any page of your WordPress website. Shortcode attributes (company's id and public key) can be found in your dashboard on [http://prelauncher.info](http://prelauncher.info)
+1. Add cridentials on "prelaucher" tab of your WordPress admin panel. Company ID and private key can be found in your dashboard on [http://prelauncher.info](http://prelauncher.info).
+2.
+	Add 
+	```php
+	[prelauncher][/prelauncher]
+	```
+	shortcode to any page of your WordPress website.
 
 
 ## Contributing

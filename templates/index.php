@@ -1,12 +1,11 @@
 <?php
 /**
- * The Header template for our theme
+ * The Header template for Prelauncher theme
  *
- * Displays all of the <head> section and everything up till <div id="main">
  *
- * @package WordPress
+ * @package Prelauncher
  * @subpackage Twenty_Thirteen
- * @since Twenty Thirteen 1.0
+ * @since Prelauncher 1.0
  */
 ?>
 <!DOCTYPE html>
@@ -14,11 +13,10 @@
 	<head>
 		<meta name="viewport" content="width=device-width">
 		<?php wp_head(); ?>
-		<?php while ( have_posts() ) : the_post(); ?>
-			<?php the_content(); ?>
-		<?php endwhile; ?>		
 	</head>
 	<body id="campaign">
-
+		<?php while ( have_posts() ) : the_post(); ?>
+			<?php the_content(); ?>
+		<?php endwhile; ?>	
 	</body>
 </html>

@@ -9,15 +9,25 @@
    License: GPL2
    */
 
+require_once dirname( __FILE__ ) . '/includes/prelauncher-settings.php';
+
+$prelaunchr_admin = new PrelauncherSettings();
 
 
+register_activation_hook( __FILE__ , "loadAPI" );
+register_activation_hook( __FILE__ , array($prelaunchr_admin, 'activate' ) );
+register_deactivation_hook( __FILE__ , array($prelaunchr_admin, 'deactivate' ) );
 
 
-
+function setMetaTags(){
+	$ds = \Prelauncher\Constructor::metaTags();
+	echo $ds;
+}
 
 if ( ! class_exists( 'Prelauncher' ) ) :
 
 	class Prelauncher {
+
 
 		public $version = '1.0.0';
 
@@ -33,33 +43,62 @@ if ( ! class_exists( 'Prelauncher' ) ) :
 
 		public $add_scripts = false;
 
+		public $body = null;
+
+		public $credentials = null;
+
 		protected static $_self = null;
 	
 		public function __construct() {
-
 			$this->define_constants();
+			$this->load_dependencies();
+			$this->loadAPI();
+			$this->setCredentials();
 			$this->setup_hooks();
+			
+		}
+
+		public function setCredentials(){
+			$this->credentials = get_option('prelauncher-credentials');
+			\Prelauncher\Settings::configure($this->credentials['company_id'], $this->credentials["private_key"]);
 		}	
 
 		public function setup_hooks() {
-			add_shortcode( 'prelauncher', array($this,  'prelauncher_shortcode'));
-
 			add_action( 'the_posts', array( $this, 'check_for_shortcode' ) );
-
-			add_filter( "page_template", array ( $this, "get_prelauncher_template") ) ;
-
-
+			add_filter( "page_template",array ( $this, "get_prelauncher_template") ) ;
 			add_action( 'wp_enqueue_scripts', array($this, 'prelauncher_enqueue_scripts'));
-
-			add_action( 'init', array ( $this, 'check_theme_support') );
 		}
 
-		
+		public function load_dependencies(){
+			require_once(dirname( __FILE__ ) . "/lib/httpful/bootstrap.php");
+			require_once(dirname( __FILE__ ) . "/lib/restful/bootstrap.php");
+			require_once(dirname( __FILE__ ) . "/lib/prelauncher/bootstrap.php");
+			require_once dirname( __FILE__ ) . '/includes/prelauncher-settings.php';
+		}
+
+		public function loadAPI(){
+			\Httpful\Bootstrap::init();
+			\RESTful\Bootstrap::init();
+			\Prelauncher\Bootstrap::init();
+		}
+
+		public function uploadReferPage(){
+			$ds = \Prelauncher\Constructor::referPage();
+			return $ds->clients->html_version;			
+		}
+
+		public function uploadLandingPage(){
+			$ds = \Prelauncher\Constructor::landingPage();
+			return $ds->clients->html_version;			
+		}
+
+
 		
 		public function get_prelauncher_template($page_template){
 			if ( $this->add_scripts ) {
 		    	$page_template = dirname( __FILE__ ) . '/templates/index.php';
 		    }
+
 		    return $page_template;
 		}
 
@@ -71,14 +110,16 @@ if ( ! class_exists( 'Prelauncher' ) ) :
 			foreach ( $posts as $post ) {
 
 				if ( false !== stripos( $post->post_content, '[prelauncher' ) ) {
+					add_shortcode( 'prelauncher', array($this,  'prelauncher_shortcode'));
 					$this->add_scripts = true;
 					$this->page_id = $post->ID;
 					break;
 				}
 			}
 
-
-
+			if ($this->add_scripts)
+			    add_action('wp_head', "setMetaTags");
+	
 			return $posts;
 		}
 
@@ -146,21 +187,12 @@ if ( ! class_exists( 'Prelauncher' ) ) :
 
 		function prelauncher_shortcode( $atts, $content = '' ){
 
-			if ( empty( $atts['company_id'] ) ){
-				return '<strong>Company ID is not specified </strong>';
-			}
 
-			if ( empty( $atts['token'] ) ){
-				return "<strong>Token is not specified</string>";
-			}
-
-			$this->companyID = $atts['company_id'];
-			$this->token = $atts["token"];
-
-			if (empty($_GET["client_id"])){				
+			if (empty($_GET["uid"])){		
+				// Prelauncher::uploadLandingPage();
 				$this->prelauncher_get_template_part( 'prelauncher', 'landing' );
 			} else {
-				$this->clientID = $_GET["client_id"];
+				$this->clientID = $_GET["uid"];
 				$this->prelauncher_get_template_part( 'prelauncher', 'refer' );
 			}
 
