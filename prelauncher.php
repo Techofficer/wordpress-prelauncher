@@ -1,18 +1,16 @@
 <?php
    /*
    Plugin Name: Prelauncher
-   Plugin URI: http://prelauncher.info
-   Description: a plugin which allows to integrate Prelauncher (pre-launch website builder which helps new online store owners to easily build a viral pre-launch website and start referral prelaunch campaign) with Wordpress.
+   Plugin URI: http://prelauncher.info/docs/wordpress
+   Description: a plugin which allows to integrate Prelauncher (pre-launch website builder which helps new online store owners to easily build a viral pre-launch website and start referral prelaunch campaign) with Wordpress website.
    Version: 1.0.0
    Author: Artem Efremov
-   Author URI: https://www.facebook.com/artyom.efremov.9
+   Author URI: https://ru.linkedin.com/in/efremovartyom
    License: GPL2
    */
 
-require_once dirname( __FILE__ ) . '/includes/prelauncher-settings.php';
 
 $prelaunchr_admin = new PrelauncherSettings();
-
 
 register_activation_hook( __FILE__ , "loadAPI" );
 register_activation_hook( __FILE__ , array($prelaunchr_admin, 'activate' ) );
@@ -25,9 +23,7 @@ function setMetaTags(){
 }
 
 if ( ! class_exists( 'Prelauncher' ) ) :
-
 	class Prelauncher {
-
 
 		public $version = '1.0.0';
 
@@ -37,6 +33,9 @@ if ( ! class_exists( 'Prelauncher' ) ) :
 
 		public $token = null;
 
+		/*
+			Unique identificator of subscriber
+		*/
 		public $clientID = null;
 
 		public $page_id = null;
@@ -44,11 +43,17 @@ if ( ! class_exists( 'Prelauncher' ) ) :
 		public $add_scripts = false;
 
 		public $body = null;
-
+		/*
+			Associated array with company's ID and private API key
+		*/
 		public $credentials = null;
 
 		protected static $_self = null;
 	
+
+		/*
+			Initialization
+		*/
 		public function __construct() {
 			$this->define_constants();
 			$this->load_dependencies();
@@ -58,6 +63,9 @@ if ( ! class_exists( 'Prelauncher' ) ) :
 			
 		}
 
+		/*
+			Authenticate API calls to Prelauncher.info
+		*/
 		public function setCredentials(){
 			$this->credentials = get_option('prelauncher-credentials');
 			\Prelauncher\Settings::configure($this->credentials['company_id'], $this->credentials["private_key"]);
@@ -82,11 +90,17 @@ if ( ! class_exists( 'Prelauncher' ) ) :
 			\Prelauncher\Bootstrap::init();
 		}
 
+		/*
+			Request HTML code of referral page
+		*/
 		public function uploadReferPage(){
 			$ds = \Prelauncher\Constructor::referPage();
 			return $ds->clients->html_version;			
 		}
 
+		/*
+			Request HTML code of landing page
+		*/
 		public function uploadLandingPage(){
 			$ds = \Prelauncher\Constructor::landingPage();
 			return $ds->clients->html_version;			
@@ -103,7 +117,6 @@ if ( ! class_exists( 'Prelauncher' ) ) :
 		}
 
 		public function check_for_shortcode( $posts ) {
-
 			if ( empty( $posts ) )
 				return $posts;
 
@@ -125,20 +138,17 @@ if ( ! class_exists( 'Prelauncher' ) ) :
 
 
 		public function check_theme_support() {
-
 			if ( current_theme_supports('prelauncher') && get_option('page_on_front') ) {
 				$this->add_scripts = true;
 			}
 		}
 		
 		public static function instance() {
-
 			if ( is_null( self::$_self ) ) {
 				self::$_self = new self();
 			}
 
 			return self::$_self;
-
 		}
 
 		public function define_constants() {
@@ -154,20 +164,14 @@ if ( ! class_exists( 'Prelauncher' ) ) :
 
 		public function prelauncher_enqueue_scripts() {
 			if ( $this->add_scripts ) {
-
 				wp_enqueue_style('bootstrap', plugins_url( '/assets/stylesheets/bootstrap.min.css' , __FILE__ ), array(), "3.3.5");
 				wp_enqueue_style('prelauncher', plugins_url( '/assets/stylesheets/prelauncher.css' , __FILE__ ), array(), PRELAUNCHER_VERSION);
 				wp_enqueue_style('prelauncher-fonts', plugins_url('/assets/stylesheets/fonts.css' , __FILE__ ), array(), PRELAUNCHER_VERSION);
 				wp_enqueue_style('font-awesome', plugins_url( '/assets/stylesheets/font-awesome.min.css' , __FILE__ ), array(), "4.4.0");
-
 				wp_enqueue_script('prelauncher-api', plugins_url( '/assets/javascripts/prelauncher.js' , __FILE__ ), array('jquery'), PRELAUNCHER_VERSION);
 			}
 		}
 
-
-		/**
-		 * Check theme for templates overwise use default plugin templates
-		 */
 		public function prelauncher_get_template_part( $slug , $name = null ) {
 
 			if ( empty( $slug ) ) {
@@ -186,16 +190,12 @@ if ( ! class_exists( 'Prelauncher' ) ) :
 
 
 		function prelauncher_shortcode( $atts, $content = '' ){
-
-
 			if (empty($_GET["uid"])){		
-				// Prelauncher::uploadLandingPage();
 				$this->prelauncher_get_template_part( 'prelauncher', 'landing' );
 			} else {
 				$this->clientID = $_GET["uid"];
 				$this->prelauncher_get_template_part( 'prelauncher', 'refer' );
 			}
-
 
 			return ob_get_clean();
 		}		
@@ -211,11 +211,6 @@ function Prelauncher() {
 }
 
 $Prelauncher = Prelauncher();
-
-
-
-
-
 
 
 ?>

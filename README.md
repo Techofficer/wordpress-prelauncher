@@ -1,6 +1,6 @@
 # PRELAUNCHER for WordPress
 
-WordPress plugin which allows to add a simple and beatiful prelaunch web page to your WordPress website. Based on https://github.com/harrystech/prelaunchr and discussed in greater detail on [Tim Ferriss'](http://fourhourworkweek.com/2014/07/21/harrys-prelaunchr-email/) blog.
+WordPress plugin which allows your to add a simple and beatiful prelaunch web page to your WordPress website. Based on https://github.com/harrystech/prelaunchr and discussed in greater detail on [Tim Ferriss'](http://fourhourworkweek.com/2014/07/21/harrys-prelaunchr-email/) blog.
 
 ![Prelauncher](http://prelauncher.info/prelauncher-black.png)
 
@@ -21,6 +21,12 @@ Prelauncher is a pre-launch website builder which helps new online store owners 
 - Add special shortcode to any page of your website.
 
 ## Installation
+
+### Automatic installation
+
+To do an automaticic install, log in to your WordPress admin panel, navigate to the Plugins menu and click Add New.
+
+In the search field type "Prelauncher" and click Search Plugins. After you've found the plugin you can view details about it such as the point release, rating and description. Most importantly of course, you can install it by clicking _Install Now_.
 
 ### Manual installation
 

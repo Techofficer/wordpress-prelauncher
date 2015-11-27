@@ -19,6 +19,9 @@
   border-radius: 0;  
 }
 
+.form-details{
+  display: block;
+}
 
 ul {
     margin: 0;
@@ -166,7 +169,7 @@ ul {
 }
 
 #prizes {
-    border-top: 5px solid #E9E9E9;
+    border-top: 5px solid #BCBCBC;
     position: relative;
     font-family: "open sans";
     color: #333;
@@ -180,7 +183,6 @@ ul {
 }
 
 #prizes .prize-number{
-    background-color: #E9E9E9;
     color: inherit;
     border-radius: 50%;
     position: absolute;
@@ -508,13 +510,6 @@ ul {
     line-height: 30px;
   }
 
-
-  #prizes .prize-number{
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
-    left: calc(50% - 12px);
-  }
 }
 
 
@@ -547,13 +542,6 @@ ul {
   }
 
 
-  #prizes .prize-number{
-    width: 26px;
-    height: 26px;
-    line-height: 26px;
-    left: calc(50% - 13px);
-  }
-
 
 }
 
@@ -576,11 +564,12 @@ ul {
 @media screen and (max-width: 767px){
 
   #prizes .prize-number {
-      width: 90px;
-      height: 40px;
-      line-height: 40px;
-      left: calc(50% - 45px);
-      top: -50px;
+    background-color: #E9E9E9;
+    width: 90px;
+    height: 40px;
+    line-height: 40px;
+    left: calc(50% - 45px);
+    top: -50px;
   }
 
   #campaign .prize-number > span {
