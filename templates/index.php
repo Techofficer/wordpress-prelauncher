@@ -9,7 +9,7 @@
  */
 ?>
 <!DOCTYPE html>
-<html>
+<html itemscope='' itemtype='http://schema.org/Article'>
 	<head>
 		<meta name="viewport" content="width=device-width">
 		<?php wp_head(); ?>
