@@ -1,10 +1,7 @@
-var Prelauncher = function(company_id, development){
+var Prelauncher = function(company_id){
 
-	if (development){
-		var rootUrl = "http://api.prelauncher.io:3000/companies/" + company_id + "/clients/";
-	} else {
-		var rootUrl = "http://api.prelauncher.info/companies/" + company_id + "/clients/";
-	}
+	var rootUrl = "http://api.prelauncher.info/companies/" + company_id + "/clients/";
+
 
 	this.buildFirstPage = function(){
 		jQuery('html').attr('style', function(i,s) { return (s || '') + 'margin-top: 0 !important;' });
