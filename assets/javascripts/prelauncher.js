@@ -1,4 +1,4 @@
-var Prelauncher = function(company_id, token, development){
+var Prelauncher = function(company_id, development){
 
 	if (development){
 		var rootUrl = "http://api.prelauncher.io:3000/companies/" + company_id + "/clients/";
@@ -6,9 +6,6 @@ var Prelauncher = function(company_id, token, development){
 		var rootUrl = "http://api.prelauncher.info/companies/" + company_id + "/clients/";
 	}
 
-
-	
-	
 	this.buildFirstPage = function(){
 		jQuery('html').attr('style', function(i,s) { return (s || '') + 'margin-top: 0 !important;' });
 		addHiddenTags();
@@ -25,9 +22,9 @@ var Prelauncher = function(company_id, token, development){
        			'beforeSend' : function(xhr){
 					xhr.setRequestHeader("Accept", "application/json")
 				}, 
-       			data: jQuery(this).serialize() + "&token=" + token,
+       			data: jQuery(this).serialize(),
        			success: function(data) {
-           			createClientCallback(data, true);
+           			createClientCallback(data);
        			},
        			error: function(data) {
            			errorMesage(data["responseText"]);
@@ -49,9 +46,6 @@ var Prelauncher = function(company_id, token, development){
     	}
 	}
 
-	this.addHiddenTags = function(){
-		addHiddenTags();
-	}
 
 	function addHiddenTags(){
 		var referralId;
@@ -75,13 +69,12 @@ var Prelauncher = function(company_id, token, development){
 		}
 	}
 
-	function createClientCallback(data, wordpress){
-		if (wordpress !== undefined){
-			var url = data["clients"]["website_url"] + "/?uid=" + data["clients"]["referral_code"];
-		} else {
-			var url = data["clients"]["website_url"] + "/clients/" + data["clients"]["referral_code"];
+	function createClientCallback(data){
+		var url;
+		var url;
+		if (url = data["clients"]["referral_url"]){
+			window.location.replace(url);
 		}
-		window.location.replace(url);
 	}
 
 	function apiCall(url, callback){
@@ -102,30 +95,25 @@ var Prelauncher = function(company_id, token, development){
 	}
 
 
-	function referralLink(websiteUrl,referralCode){
-		return websiteUrl + "/?ref=" + referralCode;
-	}
-
 	function clientURL(referralCode){
 		return rootUrl + referralCode;
 	}
 
 	function shareURL(referralCode, service){
-		return rootUrl + referralCode + "/shares?share%5Bsocial_network%5D=" + service
+		return clientURL(referralCode) + "/shares?share%5Bsocial_network%5D=" + service
 	}
 
 	this.buildSecondPage = function(referralCode){
-		console.log(clientURL(referralCode));
+		jQuery('html').attr('style', function(i,s) { return (s || '') + 'margin-top: 0 !important;' });
 		apiCall(clientURL(referralCode), function(data){
 			var client = data["clients"];
-			console.log(client);
 
 			if (data["prize_id"]){
 				jQuery(".prize[data-prize_id=" + client["prize_id"] + "]").addClass("active-prize")
 			}
 			
-			jQuery("strong > a").text(client["number_of_referrals"] + " friends ").attr("href", client["website_url"] + "/clients/" + referralCode + "/referrals");
-			jQuery("[name=referral_link]").val(referralLink(client["website_url"], referralCode));
+			jQuery("strong > a").text(client["number_of_referrals"] + " friends ").attr("href", clientURL(referralCode) + "/referrals");
+			jQuery("[name=referral_link]").val(client["referral_url"]);
 			modifySocialLinks(referralCode);
 			jQuery(".progressbar").css("width", client['progress'] * 100 + "%");				
 		});

@@ -1,9 +1,8 @@
 <?php
-	
 	echo Prelauncher::uploadLandingPage();
 ?>
 
 <script>
-	var prelauncher = new Prelauncher('<?php echo Prelauncher()->companyID ?>', '<?php echo Prelauncher()->token ?>', true);
+	var prelauncher = new Prelauncher('<?php echo Prelauncher()->credentials["company_id"] ?>');
 	prelauncher.buildFirstPage();
 </script>

@@ -9,6 +9,7 @@
    License: GPL2
    */
 
+require_once dirname( __FILE__ ) . '/includes/prelauncher-settings.php';
 
 $prelaunchr_admin = new PrelauncherSettings();
 
@@ -81,7 +82,6 @@ if ( ! class_exists( 'Prelauncher' ) ) :
 			require_once(dirname( __FILE__ ) . "/lib/httpful/bootstrap.php");
 			require_once(dirname( __FILE__ ) . "/lib/restful/bootstrap.php");
 			require_once(dirname( __FILE__ ) . "/lib/prelauncher/bootstrap.php");
-			require_once dirname( __FILE__ ) . '/includes/prelauncher-settings.php';
 		}
 
 		public function loadAPI(){

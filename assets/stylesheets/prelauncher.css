@@ -1,29 +1,42 @@
-.alert{
+
+#campaign a {
+    color: #337AB7;
+}
+
+#campaign pre{
+  display: none;
+}
+
+#campaign a:hover, #campaign a:focus {
+    color: #23527C;
+}
+
+#campaign .alert{
   margin-bottom: 0px;
   text-align: center;
   z-index: 1000;
   position: relative;
 }
 
-.alert.alert-success{
+#campaign .alert.alert-success{
   color: white;
   background: #3ed37d;
   border: none;
   border-radius: 0;
 }
 
-.alert.alert-danger{
+#campaign .alert.alert-danger{
   color: white;
   background: #e74c3c;
   border: none;
   border-radius: 0;  
 }
 
-.form-details{
+#campaign .form-details{
   display: block;
 }
 
-ul {
+#campaign ul {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -36,7 +49,7 @@ html {
   overflow-y: auto !important;
 }
 
-body {
+body#campaign {
   height:100%;
   min-height: 100%;
   font-size: 14px;
@@ -58,15 +71,10 @@ a:link, a:visited, a:active, a:focus{
   text-decoration: none !important;
 }
 
-a:hover {
+#campaign a:hover {
     text-decoration: none;
 }
 
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
 
 #additional_info .form-group label {
   color: #271B1B;
