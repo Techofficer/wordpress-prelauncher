@@ -69,7 +69,7 @@ var Prelauncher = function(company_id){
 	function createClientCallback(data){
 		var url;
 		var url;
-		if (url = data["clients"]["referral_url"]){
+		if (url = data["clients"]["client_url"]){
 			window.location.replace(url);
 		}
 	}

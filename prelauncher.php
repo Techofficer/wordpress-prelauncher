@@ -3,7 +3,7 @@
    Plugin Name: Prelauncher
    Plugin URI: http://prelauncher.info/docs/wordpress
    Description: a plugin which allows to integrate Prelauncher (pre-launch website builder which helps new online store owners to easily build a viral pre-launch website and start referral prelaunch campaign) with Wordpress website.
-   Version: 1.0.2
+   Version: 1.0.3
    Author: Artem Efremov
    Author URI: https://ru.linkedin.com/in/efremovartyom
    License: GPL2
@@ -26,7 +26,7 @@ function setMetaTags(){
 if ( ! class_exists( 'Prelauncher' ) ) :
 	class Prelauncher {
 
-		public $version = '1.0.0';
+		public $version = '1.0.3';
 
 		public $plugin_name = 'prelauncher';
 
