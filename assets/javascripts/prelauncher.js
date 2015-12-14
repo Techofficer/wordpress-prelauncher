@@ -46,11 +46,11 @@ var Prelauncher = function(company_id){
 
 	function addHiddenTags(){
 		var referralId;
-		if (referralId = GetURLParameter("ref")){
-			addHiddenTag("referral_id", referralId);
-			if (document.referrer){
-				addHiddenTag("traffic_source", document.referrer);
-			}
+		if (referralCode = GetURLParameter("ref")){
+			addHiddenTag("referral_code", referralCode);
+		}
+		if (document.referrer){
+			addHiddenTag("traffic_source", document.referrer);
 		}
 	}
 
